@@ -10,7 +10,7 @@ keywords = ["paper", "working-paper", "ssrn", "economics", "finance", "accountin
 categories = ["paper"]
 disciplines = ["economics", "business", "sociology"]
 compiler = "0.14.0"
-exclude = ["template/example.typ"]
+exclude = []
 
 [template]
 path = "template"
