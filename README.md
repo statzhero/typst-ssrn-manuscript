@@ -67,8 +67,8 @@ Your text here.
 - Use `textcite` for in-text citations where the author name is part of the sentence:
 
 ```typst
-#textcite(<coffee2024>) find that decaf has no effect.
-// renders as: Coffee (2024) find that decaf has no effect.
+#textcite(<coffee2024>) finds that decaf has no effect.
+// renders as: Coffee (2024) finds that decaf has no effect.
 ```
 
 This is equivalent to `\textcite` in biblatex or `\citet` in natbib.
