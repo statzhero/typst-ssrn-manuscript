@@ -1,6 +1,6 @@
 [package]
 name = "ssrn-manuscript"
-version = "0.2.0"
+version = "0.3.0"
 entrypoint = "lib.typ"
 authors = ["Ulrich Atz <ulrich.atz@unibocconi.it>"]
 license = "MIT"

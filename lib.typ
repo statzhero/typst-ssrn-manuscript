@@ -127,6 +127,8 @@
   jel: none,
   acknowledgments: none,
   bibliography: none,
+  appendix: none,
+  internet-appendix: none,
   citation-style: "chicago-author-date",
   // layout
   margin: 1in,
@@ -394,6 +396,49 @@
       v(0.8em)
     }
     bibliography
+  }
+
+  // ====================================================================
+  // APPENDIX
+  // ====================================================================
+
+  if appendix != none {
+    pagebreak(weak: true)
+    {
+      set par(leading: 0.65em, spacing: 0.65em)
+      set block(spacing: 0.65em)
+      counter(heading).update(0)
+      set heading(numbering: (..nums) => {
+        let vals = nums.pos()
+        if vals.len() <= 1 { none }
+        else { "A." + str(vals.at(1)) }
+      })
+      appendix
+    }
+  }
+
+  // ====================================================================
+  // INTERNET APPENDIX
+  // ====================================================================
+
+  if internet-appendix != none {
+    pagebreak(weak: true)
+    {
+      set par(leading: 0.65em, spacing: 0.65em)
+      set block(spacing: 0.65em)
+      counter(heading).update(0)
+      set heading(numbering: (..nums) => {
+        let vals = nums.pos()
+        if vals.len() <= 1 { none }
+        else { "IA." + str(vals.at(1)) }
+      })
+      // restart table and figure counters with IA prefix
+      counter(figure.where(kind: table)).update(0)
+      show figure.where(kind: table): set figure(supplement: [Table IA])
+      counter(figure.where(kind: image)).update(0)
+      show figure.where(kind: image): set figure(supplement: [Figure IA])
+      internet-appendix
+    }
   }
 
   // ====================================================================
