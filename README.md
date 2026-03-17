@@ -1,6 +1,6 @@
 # ssrn-manuscript
 
-[![Typst Universe](https://img.shields.io/badge/Universe-0.1.0-239dae?logo=typst)](https://typst.app/universe/package/ssrn-manuscript)
+[![Typst Universe](https://img.shields.io/badge/Universe-0.3.0-239dae?logo=typst)](https://typst.app/universe/package/ssrn-manuscript)
 ![Human in the Loop](https://img.shields.io/badge/Human%20in%20the%20Loop-blue)
 
 
@@ -8,10 +8,13 @@ A Typst template for working papers in the social sciences, especially economics
 
 Main features:
 - Clean, visual style
-- Many options to customize (and open to suggestions)
 - Endfloat mode for conference submissions
+- Appendix and Internet Appendix sections with automatic numbering
 - Anonymized title page for blind review
 - No external dependencies
+
+The package features many options to customize and we're open to suggestions.
+
 
 **Example**: 
 ![Title page example](thumbnail.png)
@@ -26,7 +29,7 @@ typst compile main.typ
 Or copy directly into an existing document:
 
 ```typst
-#import "@preview/ssrn-manuscript:0.1.0": *
+#import "@preview/ssrn-manuscript:0.3.0": *
 
 #show: paper.with(
   title: "Your Paper Title",
@@ -47,20 +50,21 @@ Or copy directly into an existing document:
 Your text here.
 ```
 
-## Features
+## Key features
 
-- Superscript author affiliations, deduplicated automatically
-- Table captions on top, figure captions on bottom
 - Endfloat mode for journal submissions (figures and tables at the end, placeholders inline)
 - Anonymized mode for blind review
-- Draft watermark ("DO NOT CITE")
-- Black hyperlinks for unintrusive print
+- Draft watermark ("DO NOT CITE" or custom string)
+- Internet Appendix with IA.1, IA.2, ... numbering and IA-prefixed figure/table counters
 - Chicago author-date citations by default (override in your `bibliography()` call)
 
 
 ## Other features
 
-Use `textcite` for in-text citations where the author name is part of the sentence:
+- Superscript author affiliations, deduplicated automatically
+- Table captions on top, figure captions on bottom
+- Black hyperlinks for unintrusive print
+- Use `textcite` for in-text citations where the author name is part of the sentence:
 
 ```typst
 #textcite(<coffee2024>) find that decaf has no effect.
@@ -82,8 +86,10 @@ A shorter alias `c` is also available: `#c(<coffee2024>)`.
 | `jel` | `none` | JEL classification codes |
 | `acknowledgments` | `none` | Footnote on the Abstract heading |
 | `bibliography` | `none` | Bibliography specification |
+| `appendix` | `none` | Appendix content (headings numbered A.1, A.2, ...) |
+| `internet-appendix` | `none` | Internet Appendix content (IA.1, IA.2, ...; IA-prefixed figures/tables) |
 | `anonymize` | `false` | Suppress authors, affiliations, date, and acknowledgments |
-| `draft` | `false` | "DO NOT CITE" watermark |
+| `draft` | `false` | `false` for none, `true` for "DO NOT CITE", or a custom string |
 | `endfloat` | `false` | Move figures and tables to end, leave placeholders inline |
 | `line-spacing` | `"double"` | `"double"`, `"onehalf"`, or `"single"` |
 
@@ -112,7 +118,7 @@ A shorter alias `c` is also available: `#c(<coffee2024>)`.
 The template file shows every parameter with its default value:
 
 ```typst
-#import "@preview/ssrn-manuscript:0.1.0": *
+#import "@preview/ssrn-manuscript:0.3.0": *
 
 #show: paper.with(
   // -- metadata -----------------------------------------------------------
@@ -140,6 +146,10 @@ The template file shows every parameter with its default value:
   bibliography: bibliography("refs.bib", title: "References"),
   citation-style: "chicago-author-date", // any CSL style name
 
+  // -- appendix -----------------------------------------------------------
+  appendix: none,                  // content block; headings numbered A.1, A.2, ...
+  internet-appendix: none,         // content block; IA.1, IA.2, ...; IA-prefixed figures/tables
+
   // -- typography ---------------------------------------------------------
   font: ("Linux Libertine", "Times New Roman", "New Computer Modern"),
   fontsize: 12pt,                   // body text size
@@ -148,7 +158,7 @@ The template file shows every parameter with its default value:
   margin: 1in,                      // page margins (default: 1in)
   paper: "us-letter",               // "us-letter" or "a4"
   anonymize: false,                 // suppress authors, affiliations, date, acknowledgments
-  draft: false,                     // "DO NOT CITE" watermark
+  draft: false,                     // false, true ("DO NOT CITE"), or custom string
   endfloat: false,                  // move figures/tables to end, leave placeholders inline
 
   // -- spacing ------------------------------------------------------------
