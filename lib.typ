@@ -4,6 +4,10 @@
 // save built-in before the `bibliography` parameter shadows it
 #let _bib-func = bibliography
 
+// prose-form citation shorthand: #textcite(<key>) → "Author (Year)"
+#let textcite(key) = cite(key, form: "prose")
+#let c(key) = cite(key, form: "prose")
+
 // ---------------------------------------------------------------------------
 // Helper: deduplicate affiliations and build the author line
 // ---------------------------------------------------------------------------
@@ -77,7 +81,7 @@
     box(width: abstract-width)[
       #set align(left)
       #set par(first-line-indent: 0em, leading: 0.65em, spacing: 0.65em, justify: true)
-      #align(center)[*Abstract*#if acknowledgments != none { super[\*] }]
+      #align(center)[*Abstract*#if acknowledgments != none [\*]]
       #v(gap, weak: true)
       #par(justify: true, abstract)
     ]
@@ -128,6 +132,7 @@
   margin: 1in,
   paper: "us-letter",
   anonymize: false,
+  // draft watermark: false for none, true for "DO NOT CITE", or custom string
   draft: false,
   endfloat: false,
   first-line-indent: 1.5em,
@@ -168,10 +173,11 @@
     paper: paper,
     margin: margin,
     numbering: "1",
-    background: if draft {
+    background: if draft != false {
+      let msg = if draft == true { "DO NOT CITE" } else { draft }
       place(
         center + horizon,
-        rotate(45deg, text(120pt, fill: luma(92%), weight: "bold", "DO NOT CITE")),
+        rotate(45deg, text(120pt, fill: luma(92%), weight: "bold", msg)),
       )
     },
   )
@@ -194,8 +200,10 @@
   // table captions on top, figure captions on bottom
   show figure.where(kind: table): set figure.caption(position: top)
 
-  // bold "Figure 1." / "Table 1." caption format
+  // bold "Figure 1." / "Table 1." caption format, left-aligned, single-spaced
   show figure.caption: it => {
+    set align(left)
+    set par(leading: 0.5em, spacing: 0.5em)
     strong(it.supplement + " " + context it.counter.display() + ".")
     [ ] + it.body
   }
@@ -309,7 +317,7 @@
           line(length: 100%, stroke: 0.5pt)
           v(0.3em)
           if has-ack {
-            [#super[\*]#acknowledgments]
+            [\*#acknowledgments]
           }
           if has-ack and has-affils { v(0.2em) }
           if has-affils {

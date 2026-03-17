@@ -57,6 +57,19 @@ Your text here.
 - Black hyperlinks for unintrusive print
 - Chicago author-date citations by default (override in your `bibliography()` call)
 
+
+## Other features
+
+Use `textcite` for in-text citations where the author name is part of the sentence:
+
+```typst
+#textcite(<coffee2024>) find that decaf has no effect.
+// renders as: Coffee (2024) find that decaf has no effect.
+```
+
+This is equivalent to `\textcite` in biblatex or `\citet` in natbib.
+A shorter alias `c` is also available: `#c(<coffee2024>)`.
+
 ## Parameters
 
 | Parameter | Default | Description |
