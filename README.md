@@ -1,6 +1,6 @@
-# ssrn-manuscript
+# econ-working-paper
 
-[![Typst Universe](https://img.shields.io/badge/Universe-0.3.0-239dae?logo=typst)](https://typst.app/universe/package/ssrn-manuscript)
+[![Typst Universe](https://img.shields.io/badge/Universe-0.3.1-239dae?logo=typst)](https://typst.app/universe/package/econ-working-paper)
 ![Human in the Loop](https://img.shields.io/badge/Human%20in%20the%20Loop-blue)
 
 
@@ -22,14 +22,14 @@ The package features many options to customize and we're open to suggestions.
 ## Quick start
 
 ```typst
-typst init @preview/ssrn-manuscript
+typst init @preview/econ-working-paper
 typst compile main.typ
 ```
 
 Or copy directly into an existing document:
 
 ```typst
-#import "@preview/ssrn-manuscript:0.3.0": *
+#import "@preview/econ-working-paper:0.3.1": *
 
 #show: paper.with(
   title: "Your Paper Title",
@@ -118,7 +118,7 @@ A shorter alias `c` is also available: `#c(<coffee2024>)`.
 The template file shows every parameter with its default value:
 
 ```typst
-#import "@preview/ssrn-manuscript:0.3.0": *
+#import "@preview/econ-working-paper:0.3.1": *
 
 #show: paper.with(
   // -- metadata -----------------------------------------------------------
