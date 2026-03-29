@@ -1,6 +1,6 @@
 [package]
 name = "econ-working-paper"
-version = "0.3.1"
+version = "0.3.2"
 entrypoint = "lib.typ"
 authors = ["Ulrich Atz <ulrich.atz@unibocconi.it>"]
 license = "MIT"
@@ -8,7 +8,7 @@ description = "Working-paper template for SSRN and social science manuscripts"
 repository = "https://github.com/statzhero/econ-working-paper"
 keywords = ["paper", "working-paper", "ssrn", "economics", "finance", "accounting"]
 categories = ["paper"]
-disciplines = ["economics", "business", "sociology"]
+disciplines = ["accounting", "economics", "finance", "business", "sociology"]
 compiler = "0.14.0"
 exclude = []
 
